@@ -22,8 +22,10 @@ import type {
 } from "@tanstack/react-query";
 
 import type {
+  CreateResponse,
   CreateStaffCommand,
   ProblemDetails,
+  StaffDto,
   UpdateStaffCommand,
 } from "../../../lib/api/generated/model";
 
@@ -37,7 +39,7 @@ export const getApiBusinessBusinessIdStaff = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<StaffDto[]>(
     { url: `/api/business/${businessId}/staff`, method: "GET", signal },
     options,
   );
@@ -51,7 +53,7 @@ export const getGetApiBusinessBusinessIdStaffQueryKey = (
 
 export const getGetApiBusinessBusinessIdStaffQueryOptions = <
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdStaff>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -91,11 +93,11 @@ export const getGetApiBusinessBusinessIdStaffQueryOptions = <
 export type GetApiBusinessBusinessIdStaffQueryResult = NonNullable<
   Awaited<ReturnType<typeof getApiBusinessBusinessIdStaff>>
 >;
-export type GetApiBusinessBusinessIdStaffQueryError = ErrorType<unknown>;
+export type GetApiBusinessBusinessIdStaffQueryError = ErrorType<ProblemDetails>;
 
 export function useGetApiBusinessBusinessIdStaff<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdStaff>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options: {
@@ -122,7 +124,7 @@ export function useGetApiBusinessBusinessIdStaff<
 };
 export function useGetApiBusinessBusinessIdStaff<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdStaff>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -149,7 +151,7 @@ export function useGetApiBusinessBusinessIdStaff<
 };
 export function useGetApiBusinessBusinessIdStaff<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdStaff>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -169,7 +171,7 @@ export function useGetApiBusinessBusinessIdStaff<
 
 export function useGetApiBusinessBusinessIdStaff<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdStaff>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -207,7 +209,7 @@ export const postApiBusinessBusinessIdStaff = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<CreateResponse>(
     {
       url: `/api/business/${businessId}/staff`,
       method: "POST",
@@ -220,7 +222,7 @@ export const postApiBusinessBusinessIdStaff = (
 };
 
 export const getPostApiBusinessBusinessIdStaffMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -261,10 +263,12 @@ export type PostApiBusinessBusinessIdStaffMutationResult = NonNullable<
   Awaited<ReturnType<typeof postApiBusinessBusinessIdStaff>>
 >;
 export type PostApiBusinessBusinessIdStaffMutationBody = CreateStaffCommand;
-export type PostApiBusinessBusinessIdStaffMutationError = ErrorType<unknown>;
+export type PostApiBusinessBusinessIdStaffMutationError = ErrorType<
+  ProblemDetails | ProblemDetails
+>;
 
 export const usePostApiBusinessBusinessIdStaff = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -306,7 +310,7 @@ export const putApiBusinessBusinessIdStaffStaffId = (
 };
 
 export const getPutApiBusinessBusinessIdStaffStaffIdMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -353,11 +357,12 @@ export type PutApiBusinessBusinessIdStaffStaffIdMutationResult = NonNullable<
 >;
 export type PutApiBusinessBusinessIdStaffStaffIdMutationBody =
   UpdateStaffCommand;
-export type PutApiBusinessBusinessIdStaffStaffIdMutationError =
-  ErrorType<unknown>;
+export type PutApiBusinessBusinessIdStaffStaffIdMutationError = ErrorType<
+  ProblemDetails | ProblemDetails | ProblemDetails
+>;
 
 export const usePutApiBusinessBusinessIdStaffStaffId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -393,7 +398,7 @@ export const deleteApiBusinessBusinessIdStaffStaffId = (
 };
 
 export const getDeleteApiBusinessBusinessIdStaffStaffIdMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -438,11 +443,12 @@ export type DeleteApiBusinessBusinessIdStaffStaffIdMutationResult = NonNullable<
   Awaited<ReturnType<typeof deleteApiBusinessBusinessIdStaffStaffId>>
 >;
 
-export type DeleteApiBusinessBusinessIdStaffStaffIdMutationError =
-  ErrorType<unknown>;
+export type DeleteApiBusinessBusinessIdStaffStaffIdMutationError = ErrorType<
+  ProblemDetails | ProblemDetails
+>;
 
 export const useDeleteApiBusinessBusinessIdStaffStaffId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -486,7 +492,10 @@ export const postApiBusinessBusinessIdStaffStaffIdAssignServices = (
 };
 
 export const getPostApiBusinessBusinessIdStaffStaffIdAssignServicesMutationOptions =
-  <TError = ErrorType<ProblemDetails>, TContext = unknown>(options?: {
+  <
+    TError = ErrorType<ProblemDetails | ProblemDetails>,
+    TContext = unknown,
+  >(options?: {
     mutation?: UseMutationOptions<
       Awaited<
         ReturnType<typeof postApiBusinessBusinessIdStaffStaffIdAssignServices>
@@ -541,10 +550,10 @@ export type PostApiBusinessBusinessIdStaffStaffIdAssignServicesMutationResult =
 export type PostApiBusinessBusinessIdStaffStaffIdAssignServicesMutationBody =
   number[];
 export type PostApiBusinessBusinessIdStaffStaffIdAssignServicesMutationError =
-  ErrorType<ProblemDetails>;
+  ErrorType<ProblemDetails | ProblemDetails>;
 
 export const usePostApiBusinessBusinessIdStaffStaffIdAssignServices = <
-  TError = ErrorType<ProblemDetails>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -569,6 +578,119 @@ export const usePostApiBusinessBusinessIdStaffStaffIdAssignServices = <
 > => {
   const mutationOptions =
     getPostApiBusinessBusinessIdStaffStaffIdAssignServicesMutationOptions(
+      options,
+    );
+
+  return useMutation(mutationOptions, queryClient);
+};
+export const postApiBusinessBusinessIdStaffStaffIdAssignLocations = (
+  businessId: number,
+  staffId: number,
+  postApiBusinessBusinessIdStaffStaffIdAssignLocationsBody: number[],
+  options?: SecondParameter<typeof customInstance>,
+  signal?: AbortSignal,
+) => {
+  return customInstance<null>(
+    {
+      url: `/api/business/${businessId}/staff/${staffId}/assign-locations`,
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      data: postApiBusinessBusinessIdStaffStaffIdAssignLocationsBody,
+      signal,
+    },
+    options,
+  );
+};
+
+export const getPostApiBusinessBusinessIdStaffStaffIdAssignLocationsMutationOptions =
+  <
+    TError = ErrorType<ProblemDetails | ProblemDetails>,
+    TContext = unknown,
+  >(options?: {
+    mutation?: UseMutationOptions<
+      Awaited<
+        ReturnType<typeof postApiBusinessBusinessIdStaffStaffIdAssignLocations>
+      >,
+      TError,
+      { businessId: number; staffId: number; data: number[] },
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  }): UseMutationOptions<
+    Awaited<
+      ReturnType<typeof postApiBusinessBusinessIdStaffStaffIdAssignLocations>
+    >,
+    TError,
+    { businessId: number; staffId: number; data: number[] },
+    TContext
+  > => {
+    const mutationKey = [
+      "postApiBusinessBusinessIdStaffStaffIdAssignLocations",
+    ];
+    const { mutation: mutationOptions, request: requestOptions } = options
+      ? options.mutation &&
+        "mutationKey" in options.mutation &&
+        options.mutation.mutationKey
+        ? options
+        : { ...options, mutation: { ...options.mutation, mutationKey } }
+      : { mutation: { mutationKey }, request: undefined };
+
+    const mutationFn: MutationFunction<
+      Awaited<
+        ReturnType<typeof postApiBusinessBusinessIdStaffStaffIdAssignLocations>
+      >,
+      { businessId: number; staffId: number; data: number[] }
+    > = (props) => {
+      const { businessId, staffId, data } = props ?? {};
+
+      return postApiBusinessBusinessIdStaffStaffIdAssignLocations(
+        businessId,
+        staffId,
+        data,
+        requestOptions,
+      );
+    };
+
+    return { mutationFn, ...mutationOptions };
+  };
+
+export type PostApiBusinessBusinessIdStaffStaffIdAssignLocationsMutationResult =
+  NonNullable<
+    Awaited<
+      ReturnType<typeof postApiBusinessBusinessIdStaffStaffIdAssignLocations>
+    >
+  >;
+export type PostApiBusinessBusinessIdStaffStaffIdAssignLocationsMutationBody =
+  number[];
+export type PostApiBusinessBusinessIdStaffStaffIdAssignLocationsMutationError =
+  ErrorType<ProblemDetails | ProblemDetails>;
+
+export const usePostApiBusinessBusinessIdStaffStaffIdAssignLocations = <
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
+  TContext = unknown,
+>(
+  options?: {
+    mutation?: UseMutationOptions<
+      Awaited<
+        ReturnType<typeof postApiBusinessBusinessIdStaffStaffIdAssignLocations>
+      >,
+      TError,
+      { businessId: number; staffId: number; data: number[] },
+      TContext
+    >;
+    request?: SecondParameter<typeof customInstance>;
+  },
+  queryClient?: QueryClient,
+): UseMutationResult<
+  Awaited<
+    ReturnType<typeof postApiBusinessBusinessIdStaffStaffIdAssignLocations>
+  >,
+  TError,
+  { businessId: number; staffId: number; data: number[] },
+  TContext
+> => {
+  const mutationOptions =
+    getPostApiBusinessBusinessIdStaffStaffIdAssignLocationsMutationOptions(
       options,
     );
 

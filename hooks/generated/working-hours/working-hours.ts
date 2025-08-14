@@ -22,9 +22,12 @@ import type {
 } from "@tanstack/react-query";
 
 import type {
+  CreateResponse,
   CreateWorkingHourCommand,
   GetApiBusinessBusinessIdWorkinghoursParams,
+  ProblemDetails,
   UpdateWorkingHourCommand,
+  WorkingHourDto,
 } from "../../../lib/api/generated/model";
 
 import { customInstance } from "../../../lib/api/axios-instance";
@@ -38,7 +41,7 @@ export const getApiBusinessBusinessIdWorkinghours = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<WorkingHourDto[]>(
     {
       url: `/api/business/${businessId}/workinghours`,
       method: "GET",
@@ -61,7 +64,7 @@ export const getGetApiBusinessBusinessIdWorkinghoursQueryKey = (
 
 export const getGetApiBusinessBusinessIdWorkinghoursQueryOptions = <
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdWorkinghours>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   params?: GetApiBusinessBusinessIdWorkinghoursParams,
@@ -107,11 +110,12 @@ export const getGetApiBusinessBusinessIdWorkinghoursQueryOptions = <
 export type GetApiBusinessBusinessIdWorkinghoursQueryResult = NonNullable<
   Awaited<ReturnType<typeof getApiBusinessBusinessIdWorkinghours>>
 >;
-export type GetApiBusinessBusinessIdWorkinghoursQueryError = ErrorType<unknown>;
+export type GetApiBusinessBusinessIdWorkinghoursQueryError =
+  ErrorType<ProblemDetails>;
 
 export function useGetApiBusinessBusinessIdWorkinghours<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdWorkinghours>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   params: undefined | GetApiBusinessBusinessIdWorkinghoursParams,
@@ -139,7 +143,7 @@ export function useGetApiBusinessBusinessIdWorkinghours<
 };
 export function useGetApiBusinessBusinessIdWorkinghours<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdWorkinghours>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   params?: GetApiBusinessBusinessIdWorkinghoursParams,
@@ -167,7 +171,7 @@ export function useGetApiBusinessBusinessIdWorkinghours<
 };
 export function useGetApiBusinessBusinessIdWorkinghours<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdWorkinghours>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   params?: GetApiBusinessBusinessIdWorkinghoursParams,
@@ -188,7 +192,7 @@ export function useGetApiBusinessBusinessIdWorkinghours<
 
 export function useGetApiBusinessBusinessIdWorkinghours<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdWorkinghours>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   params?: GetApiBusinessBusinessIdWorkinghoursParams,
@@ -228,7 +232,7 @@ export const postApiBusinessBusinessIdWorkinghours = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<CreateResponse>(
     {
       url: `/api/business/${businessId}/workinghours`,
       method: "POST",
@@ -241,7 +245,7 @@ export const postApiBusinessBusinessIdWorkinghours = (
 };
 
 export const getPostApiBusinessBusinessIdWorkinghoursMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -287,11 +291,12 @@ export type PostApiBusinessBusinessIdWorkinghoursMutationResult = NonNullable<
 >;
 export type PostApiBusinessBusinessIdWorkinghoursMutationBody =
   CreateWorkingHourCommand;
-export type PostApiBusinessBusinessIdWorkinghoursMutationError =
-  ErrorType<unknown>;
+export type PostApiBusinessBusinessIdWorkinghoursMutationError = ErrorType<
+  ProblemDetails | ProblemDetails
+>;
 
 export const usePostApiBusinessBusinessIdWorkinghours = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -333,7 +338,10 @@ export const putApiBusinessBusinessIdWorkinghoursWorkingHourId = (
 };
 
 export const getPutApiBusinessBusinessIdWorkinghoursWorkingHourIdMutationOptions =
-  <TError = ErrorType<unknown>, TContext = unknown>(options?: {
+  <
+    TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
+    TContext = unknown,
+  >(options?: {
     mutation?: UseMutationOptions<
       Awaited<
         ReturnType<typeof putApiBusinessBusinessIdWorkinghoursWorkingHourId>
@@ -400,10 +408,10 @@ export type PutApiBusinessBusinessIdWorkinghoursWorkingHourIdMutationResult =
 export type PutApiBusinessBusinessIdWorkinghoursWorkingHourIdMutationBody =
   UpdateWorkingHourCommand;
 export type PutApiBusinessBusinessIdWorkinghoursWorkingHourIdMutationError =
-  ErrorType<unknown>;
+  ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>;
 
 export const usePutApiBusinessBusinessIdWorkinghoursWorkingHourId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -450,7 +458,10 @@ export const deleteApiBusinessBusinessIdWorkinghoursWorkingHourId = (
 };
 
 export const getDeleteApiBusinessBusinessIdWorkinghoursWorkingHourIdMutationOptions =
-  <TError = ErrorType<unknown>, TContext = unknown>(options?: {
+  <
+    TError = ErrorType<ProblemDetails | ProblemDetails>,
+    TContext = unknown,
+  >(options?: {
     mutation?: UseMutationOptions<
       Awaited<
         ReturnType<typeof deleteApiBusinessBusinessIdWorkinghoursWorkingHourId>
@@ -505,10 +516,10 @@ export type DeleteApiBusinessBusinessIdWorkinghoursWorkingHourIdMutationResult =
   >;
 
 export type DeleteApiBusinessBusinessIdWorkinghoursWorkingHourIdMutationError =
-  ErrorType<unknown>;
+  ErrorType<ProblemDetails | ProblemDetails>;
 
 export const useDeleteApiBusinessBusinessIdWorkinghoursWorkingHourId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {

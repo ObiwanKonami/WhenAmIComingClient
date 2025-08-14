@@ -11,5 +11,7 @@ export interface UpdateLocationCommand {
   name?: string | null;
   /** @nullable */
   address?: string | null;
+  /** @nullable */
+  phone?: string | null;
   isActive?: boolean;
 }

@@ -6,9 +6,11 @@
  * OpenAPI spec version: v1
  */
 import type {
+  CreateResponse,
   CreateWorkingHourCommand,
   GetApiBusinessBusinessIdWorkinghoursParams,
   UpdateWorkingHourCommand,
+  WorkingHourDto,
 } from ".././model";
 
 import { customInstance } from "../../axios-instance";
@@ -21,7 +23,7 @@ export const getWorkingHours = () => {
     params?: GetApiBusinessBusinessIdWorkinghoursParams,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<WorkingHourDto[]>(
       {
         url: `/api/business/${businessId}/workinghours`,
         method: "GET",
@@ -35,7 +37,7 @@ export const getWorkingHours = () => {
     createWorkingHourCommand: CreateWorkingHourCommand,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<CreateResponse>(
       {
         url: `/api/business/${businessId}/workinghours`,
         method: "POST",

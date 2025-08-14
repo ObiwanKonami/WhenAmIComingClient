@@ -23,6 +23,9 @@ import type {
 
 import type {
   CreateLocationCommand,
+  CreateResponse,
+  LocationDto,
+  ProblemDetails,
   UpdateLocationCommand,
 } from "../../../lib/api/generated/model";
 
@@ -36,7 +39,7 @@ export const getApiBusinessBusinessIdLocations = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<LocationDto[]>(
     { url: `/api/business/${businessId}/locations`, method: "GET", signal },
     options,
   );
@@ -50,7 +53,7 @@ export const getGetApiBusinessBusinessIdLocationsQueryKey = (
 
 export const getGetApiBusinessBusinessIdLocationsQueryOptions = <
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdLocations>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -90,11 +93,12 @@ export const getGetApiBusinessBusinessIdLocationsQueryOptions = <
 export type GetApiBusinessBusinessIdLocationsQueryResult = NonNullable<
   Awaited<ReturnType<typeof getApiBusinessBusinessIdLocations>>
 >;
-export type GetApiBusinessBusinessIdLocationsQueryError = ErrorType<unknown>;
+export type GetApiBusinessBusinessIdLocationsQueryError =
+  ErrorType<ProblemDetails>;
 
 export function useGetApiBusinessBusinessIdLocations<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdLocations>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options: {
@@ -121,7 +125,7 @@ export function useGetApiBusinessBusinessIdLocations<
 };
 export function useGetApiBusinessBusinessIdLocations<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdLocations>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -148,7 +152,7 @@ export function useGetApiBusinessBusinessIdLocations<
 };
 export function useGetApiBusinessBusinessIdLocations<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdLocations>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -168,7 +172,7 @@ export function useGetApiBusinessBusinessIdLocations<
 
 export function useGetApiBusinessBusinessIdLocations<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdLocations>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -206,7 +210,7 @@ export const postApiBusinessBusinessIdLocations = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<CreateResponse>(
     {
       url: `/api/business/${businessId}/locations`,
       method: "POST",
@@ -219,7 +223,7 @@ export const postApiBusinessBusinessIdLocations = (
 };
 
 export const getPostApiBusinessBusinessIdLocationsMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -261,11 +265,12 @@ export type PostApiBusinessBusinessIdLocationsMutationResult = NonNullable<
 >;
 export type PostApiBusinessBusinessIdLocationsMutationBody =
   CreateLocationCommand;
-export type PostApiBusinessBusinessIdLocationsMutationError =
-  ErrorType<unknown>;
+export type PostApiBusinessBusinessIdLocationsMutationError = ErrorType<
+  ProblemDetails | ProblemDetails
+>;
 
 export const usePostApiBusinessBusinessIdLocations = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -307,7 +312,7 @@ export const putApiBusinessBusinessIdLocationsLocationId = (
 };
 
 export const getPutApiBusinessBusinessIdLocationsLocationIdMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -356,10 +361,10 @@ export type PutApiBusinessBusinessIdLocationsLocationIdMutationResult =
 export type PutApiBusinessBusinessIdLocationsLocationIdMutationBody =
   UpdateLocationCommand;
 export type PutApiBusinessBusinessIdLocationsLocationIdMutationError =
-  ErrorType<unknown>;
+  ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>;
 
 export const usePutApiBusinessBusinessIdLocationsLocationId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -398,7 +403,10 @@ export const deleteApiBusinessBusinessIdLocationsLocationId = (
 };
 
 export const getDeleteApiBusinessBusinessIdLocationsLocationIdMutationOptions =
-  <TError = ErrorType<unknown>, TContext = unknown>(options?: {
+  <
+    TError = ErrorType<ProblemDetails | ProblemDetails>,
+    TContext = unknown,
+  >(options?: {
     mutation?: UseMutationOptions<
       Awaited<
         ReturnType<typeof deleteApiBusinessBusinessIdLocationsLocationId>
@@ -447,10 +455,10 @@ export type DeleteApiBusinessBusinessIdLocationsLocationIdMutationResult =
   >;
 
 export type DeleteApiBusinessBusinessIdLocationsLocationIdMutationError =
-  ErrorType<unknown>;
+  ErrorType<ProblemDetails | ProblemDetails>;
 
 export const useDeleteApiBusinessBusinessIdLocationsLocationId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {

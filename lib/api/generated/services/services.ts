@@ -5,7 +5,12 @@
  * WAIC API endpoints
  * OpenAPI spec version: v1
  */
-import type { CreateServiceCommand, UpdateServiceCommand } from ".././model";
+import type {
+  CreateResponse,
+  CreateServiceCommand,
+  ServiceDto,
+  UpdateServiceCommand,
+} from ".././model";
 
 import { customInstance } from "../../axios-instance";
 
@@ -16,7 +21,7 @@ export const getServices = () => {
     businessId: number,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<ServiceDto[]>(
       { url: `/api/business/${businessId}/services`, method: "GET" },
       options,
     );
@@ -26,7 +31,7 @@ export const getServices = () => {
     createServiceCommand: CreateServiceCommand,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<CreateResponse>(
       {
         url: `/api/business/${businessId}/services`,
         method: "POST",

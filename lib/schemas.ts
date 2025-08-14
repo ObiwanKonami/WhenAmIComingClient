@@ -209,6 +209,7 @@ export const staffFormSchema = z.object({
   isActive: z.boolean(),
   // YENİ: Hizmet ID'lerinin bir dizi sayı olmasını bekliyoruz.
   serviceIds: z.array(z.number()).optional(),
+  locationIds: z.array(z.number()).optional(),
 });
 
 export type StaffFormValues = z.infer<typeof staffFormSchema>;
@@ -325,3 +326,22 @@ export const couponFormSchema = z.object({
 })
 
 export type CouponFormValues = z.infer<typeof couponFormSchema>
+
+// ================================
+// Konum (Location) Formu için Şema
+// ================================
+export const locationFormSchema = z.object({
+  name: z.string().min(3, { message: "Location name must be at least 3 characters." }),
+  phone: z.string().optional(),
+  address: z.string().optional(),
+  isActive: z.boolean(),
+});
+
+export type LocationFormValues = z.infer<typeof locationFormSchema>;
+
+export const defaultLocationFormValues: LocationFormValues = {
+  name: '',
+  phone: '',
+  address: '',
+  isActive: true,
+};

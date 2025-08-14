@@ -6,7 +6,8 @@
  * OpenAPI spec version: v1
  */
 
-export interface CreateLocationCommand {
+export interface LocationDto {
+  id?: number;
   /** @nullable */
   name?: string | null;
   /** @nullable */
@@ -14,4 +15,5 @@ export interface CreateLocationCommand {
   /** @nullable */
   phone?: string | null;
   isActive?: boolean;
+  businessId?: number;
 }

@@ -6,12 +6,20 @@
  * OpenAPI spec version: v1
  */
 
-export interface CreateLocationCommand {
+export interface StaffDto {
+  id?: number;
   /** @nullable */
   name?: string | null;
   /** @nullable */
-  address?: string | null;
+  email?: string | null;
   /** @nullable */
   phone?: string | null;
+  /** @nullable */
+  imageUrl?: string | null;
   isActive?: boolean;
+  businessId?: number;
+  /** @nullable */
+  serviceIds?: number[] | null;
+  /** @nullable */
+  locationIds?: number[] | null;
 }

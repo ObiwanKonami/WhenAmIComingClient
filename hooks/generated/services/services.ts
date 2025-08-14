@@ -22,7 +22,10 @@ import type {
 } from "@tanstack/react-query";
 
 import type {
+  CreateResponse,
   CreateServiceCommand,
+  ProblemDetails,
+  ServiceDto,
   UpdateServiceCommand,
 } from "../../../lib/api/generated/model";
 
@@ -36,7 +39,7 @@ export const getApiBusinessBusinessIdServices = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<ServiceDto[]>(
     { url: `/api/business/${businessId}/services`, method: "GET", signal },
     options,
   );
@@ -50,7 +53,7 @@ export const getGetApiBusinessBusinessIdServicesQueryKey = (
 
 export const getGetApiBusinessBusinessIdServicesQueryOptions = <
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdServices>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -90,11 +93,12 @@ export const getGetApiBusinessBusinessIdServicesQueryOptions = <
 export type GetApiBusinessBusinessIdServicesQueryResult = NonNullable<
   Awaited<ReturnType<typeof getApiBusinessBusinessIdServices>>
 >;
-export type GetApiBusinessBusinessIdServicesQueryError = ErrorType<unknown>;
+export type GetApiBusinessBusinessIdServicesQueryError =
+  ErrorType<ProblemDetails>;
 
 export function useGetApiBusinessBusinessIdServices<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdServices>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options: {
@@ -121,7 +125,7 @@ export function useGetApiBusinessBusinessIdServices<
 };
 export function useGetApiBusinessBusinessIdServices<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdServices>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -148,7 +152,7 @@ export function useGetApiBusinessBusinessIdServices<
 };
 export function useGetApiBusinessBusinessIdServices<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdServices>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -168,7 +172,7 @@ export function useGetApiBusinessBusinessIdServices<
 
 export function useGetApiBusinessBusinessIdServices<
   TData = Awaited<ReturnType<typeof getApiBusinessBusinessIdServices>>,
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails>,
 >(
   businessId: number,
   options?: {
@@ -206,7 +210,7 @@ export const postApiBusinessBusinessIdServices = (
   options?: SecondParameter<typeof customInstance>,
   signal?: AbortSignal,
 ) => {
-  return customInstance<null>(
+  return customInstance<CreateResponse>(
     {
       url: `/api/business/${businessId}/services`,
       method: "POST",
@@ -219,7 +223,7 @@ export const postApiBusinessBusinessIdServices = (
 };
 
 export const getPostApiBusinessBusinessIdServicesMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -261,10 +265,12 @@ export type PostApiBusinessBusinessIdServicesMutationResult = NonNullable<
 >;
 export type PostApiBusinessBusinessIdServicesMutationBody =
   CreateServiceCommand;
-export type PostApiBusinessBusinessIdServicesMutationError = ErrorType<unknown>;
+export type PostApiBusinessBusinessIdServicesMutationError = ErrorType<
+  ProblemDetails | ProblemDetails
+>;
 
 export const usePostApiBusinessBusinessIdServices = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -306,7 +312,7 @@ export const putApiBusinessBusinessIdServicesServiceId = (
 };
 
 export const getPutApiBusinessBusinessIdServicesServiceIdMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -354,11 +360,12 @@ export type PutApiBusinessBusinessIdServicesServiceIdMutationResult =
   >;
 export type PutApiBusinessBusinessIdServicesServiceIdMutationBody =
   UpdateServiceCommand;
-export type PutApiBusinessBusinessIdServicesServiceIdMutationError =
-  ErrorType<unknown>;
+export type PutApiBusinessBusinessIdServicesServiceIdMutationError = ErrorType<
+  ProblemDetails | ProblemDetails | ProblemDetails
+>;
 
 export const usePutApiBusinessBusinessIdServicesServiceId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {
@@ -397,7 +404,7 @@ export const deleteApiBusinessBusinessIdServicesServiceId = (
 };
 
 export const getDeleteApiBusinessBusinessIdServicesServiceIdMutationOptions = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(options?: {
   mutation?: UseMutationOptions<
@@ -444,10 +451,10 @@ export type DeleteApiBusinessBusinessIdServicesServiceIdMutationResult =
   >;
 
 export type DeleteApiBusinessBusinessIdServicesServiceIdMutationError =
-  ErrorType<unknown>;
+  ErrorType<ProblemDetails | ProblemDetails>;
 
 export const useDeleteApiBusinessBusinessIdServicesServiceId = <
-  TError = ErrorType<unknown>,
+  TError = ErrorType<ProblemDetails | ProblemDetails>,
   TContext = unknown,
 >(
   options?: {

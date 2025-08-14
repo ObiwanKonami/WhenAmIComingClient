@@ -1,4 +1,3 @@
-// app/admin/settings/affiliate/page.tsx - TÜM HATALARI ÇÖZEN NİHAİ SÜRÜM
 'use client'
 
 import { useEffect } from 'react'
@@ -34,8 +33,8 @@ export default function AffiliateSettingsPage() {
     resolver: zodResolver(affiliateSettingsFormSchema),
     defaultValues: {
       enableReferral: false,
-      commissionRate: '0', // Artık string
-      minimumPayout: '0',  // Artık string
+      commissionRate: '0', 
+      minimumPayout: '0',  
       referralGuidelines: '',
     }
   });

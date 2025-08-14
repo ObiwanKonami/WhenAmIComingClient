@@ -5,7 +5,12 @@
  * WAIC API endpoints
  * OpenAPI spec version: v1
  */
-import type { CreateLocationCommand, UpdateLocationCommand } from ".././model";
+import type {
+  CreateLocationCommand,
+  CreateResponse,
+  LocationDto,
+  UpdateLocationCommand,
+} from ".././model";
 
 import { customInstance } from "../../axios-instance";
 
@@ -16,7 +21,7 @@ export const getLocations = () => {
     businessId: number,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<LocationDto[]>(
       { url: `/api/business/${businessId}/locations`, method: "GET" },
       options,
     );
@@ -26,7 +31,7 @@ export const getLocations = () => {
     createLocationCommand: CreateLocationCommand,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<CreateResponse>(
       {
         url: `/api/business/${businessId}/locations`,
         method: "POST",

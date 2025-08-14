@@ -5,7 +5,12 @@
  * WAIC API endpoints
  * OpenAPI spec version: v1
  */
-import type { CreateStaffCommand, UpdateStaffCommand } from ".././model";
+import type {
+  CreateResponse,
+  CreateStaffCommand,
+  StaffDto,
+  UpdateStaffCommand,
+} from ".././model";
 
 import { customInstance } from "../../axios-instance";
 
@@ -16,7 +21,7 @@ export const getStaff = () => {
     businessId: number,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<StaffDto[]>(
       { url: `/api/business/${businessId}/staff`, method: "GET" },
       options,
     );
@@ -26,7 +31,7 @@ export const getStaff = () => {
     createStaffCommand: CreateStaffCommand,
     options?: SecondParameter<typeof customInstance>,
   ) => {
-    return customInstance<null>(
+    return customInstance<CreateResponse>(
       {
         url: `/api/business/${businessId}/staff`,
         method: "POST",
@@ -78,12 +83,29 @@ export const getStaff = () => {
       options,
     );
   };
+  const postApiBusinessBusinessIdStaffStaffIdAssignLocations = (
+    businessId: number,
+    staffId: number,
+    postApiBusinessBusinessIdStaffStaffIdAssignLocationsBody: number[],
+    options?: SecondParameter<typeof customInstance>,
+  ) => {
+    return customInstance<null>(
+      {
+        url: `/api/business/${businessId}/staff/${staffId}/assign-locations`,
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        data: postApiBusinessBusinessIdStaffStaffIdAssignLocationsBody,
+      },
+      options,
+    );
+  };
   return {
     getApiBusinessBusinessIdStaff,
     postApiBusinessBusinessIdStaff,
     putApiBusinessBusinessIdStaffStaffId,
     deleteApiBusinessBusinessIdStaffStaffId,
     postApiBusinessBusinessIdStaffStaffIdAssignServices,
+    postApiBusinessBusinessIdStaffStaffIdAssignLocations,
   };
 };
 export type GetApiBusinessBusinessIdStaffResult = NonNullable<
@@ -117,6 +139,16 @@ export type PostApiBusinessBusinessIdStaffStaffIdAssignServicesResult =
         ReturnType<
           typeof getStaff
         >["postApiBusinessBusinessIdStaffStaffIdAssignServices"]
+      >
+    >
+  >;
+export type PostApiBusinessBusinessIdStaffStaffIdAssignLocationsResult =
+  NonNullable<
+    Awaited<
+      ReturnType<
+        ReturnType<
+          typeof getStaff
+        >["postApiBusinessBusinessIdStaffStaffIdAssignLocations"]
       >
     >
   >;
